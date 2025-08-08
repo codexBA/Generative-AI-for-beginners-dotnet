@@ -4,7 +4,7 @@ using Microsoft.Extensions.AI;
 // to test other models you can download them with the command "ollama pull <modelId>"
 // in example: "ollama pull deepseek-r1" or "ollama pull phi3.5"
 IChatClient client =
-    new OllamaChatClient(new Uri("http://localhost:11434/"), "phi4-mini");
+    new OllamaChatClient(new Uri("http://localhost:11434/"), "llama3.2:1b");
 
 var response = client.GetStreamingResponseAsync("What is AI?");
 await foreach (var item in response)

@@ -5,7 +5,7 @@ using System.Text;
 using Microsoft.SemanticKernel.Connectors.Ollama;
 using OllamaSharp;
 
-var modelId = "phi4-mini";
+var modelId = "llama3.2:1b";
 var uri = "http://localhost:11434/";
 
 
@@ -14,7 +14,7 @@ var chat = new OllamaApiClient(uri, modelId)
     .AsChatCompletionService();
 
 var history = new ChatHistory();
-history.AddSystemMessage("You are a useful chatbot. If you don't know an answer, say 'I don't know!'. Always reply in a funny way. Use emojis if possible.");
+history.AddSystemMessage("You are a useful chatbot. If you don't know an answer, say 'I don't know!'. Always reply in a friendly and clear way. Don't make jokes unless asked specifically. You can speak Bosnian, English and Turkish language. If you don't know the answer - tell: I don't know. If you are not sure about the answer and not quite confident say so for each answer with confidence score less than 90$. Use emojis if possible.");
 
 while (true)
 {
