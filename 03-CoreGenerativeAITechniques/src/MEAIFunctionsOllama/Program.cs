@@ -2,7 +2,7 @@
 using System.ComponentModel;
 
 var ollamaEndpoint = "http://localhost:11434";
-var chatModel = "llama3.2";
+var chatModel = "llama3.2:3b";
 
 IChatClient client = new OllamaChatClient(
     endpoint: ollamaEndpoint,
@@ -14,7 +14,8 @@ IChatClient client = new OllamaChatClient(
 ChatOptions options = new ChatOptions
 {
     Tools = [
-        AIFunctionFactory.Create(GetTheWeather)
+        AIFunctionFactory.Create(GetTheWeather),
+        AIFunctionFactory.Create(GetCityInfo)
     ]    
 };
 
@@ -25,7 +26,7 @@ Console.WriteLine($"response: {response}");
 
 Console.WriteLine();
 
-question = "Do I need an umbrella today?. Provide an accurate and short answer";
+question = "Do I need an umbrella today in my city?. Provide an accurate and short answer with city and country name.";
 Console.WriteLine($"question: {question}");
 response = await client.GetResponseAsync(question, options);
 Console.WriteLine($"response: {response}");
@@ -42,4 +43,11 @@ static string GetTheWeather()
     var weather = $"The weather is {temperature} degrees C and {conditions}.";
     Console.WriteLine($"\tGetTheWeather result: {weather}.");
     return weather;
+}
+
+[Description("Get the city and country info")]
+static string GetCityInfo()
+{
+    Console.WriteLine("GetCityInfo function invoked.");
+    return "you are in beautiful city of Sarajevo, capital of Bosnia";
 }
