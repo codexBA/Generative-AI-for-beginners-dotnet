@@ -5,7 +5,7 @@ namespace SKFunctions01;
 
 public class CityTemperaturePlugIn
 {
-    [KernelFunction, Description("Returns the current temperature for a city.")]
+    [KernelFunction, Description("Gets the current real-time temperature for any city. Always use this function when asked about temperature or weather in any location.")]
     public async Task<string> GetCityTemperature(
         Kernel kernel,
         [Description("The city to check the temperature")] string city
